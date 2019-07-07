@@ -9,13 +9,9 @@ Fraction::Fraction() :Fraction(0,1) {
 
 Fraction::Fraction(int num, int denom): numerator(num), denominator(denom) {
 	SimplifyFraction();
-	DisplayFraction();
 }
 
-void Fraction::DisplayFraction() const
-{
-	cout << numerator << "/" << denominator << endl;
-}
+
 
 void Fraction::Add(Fraction& x, Fraction& y)
 {
@@ -95,6 +91,7 @@ inline int& Fraction::GetDenominator()
 	return denominator;
 }
 
+
 int main()
 {
 	Fraction sum;
@@ -105,10 +102,10 @@ int main()
 	sum.Add(number2, number3);
 	
 	subtract.Subtract(number2, number3);
-	cout << "here comes the fraction sum: ";  sum.DisplayFraction();
-	cout << endl;
-	cout << "here comes the fraction subtraction: "; subtract.DisplayFraction();
-	cout << endl;
+	cout << "here comes the fraction sum: " << sum << endl;
+
+	cout << "here comes the fraction subtraction: " << subtract << endl;
+
 
 	//static data member
 	cout << sum.fifth << endl;
