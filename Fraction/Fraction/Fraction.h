@@ -20,6 +20,13 @@ public:
 	inline int& GetNumerator();
 	inline int& GetDenominator();
 
+	Fraction operator-(const Fraction& fraction) const;
+	Fraction operator+(const Fraction& fraction) const;
+	Fraction operator*(const Fraction& fraction) const;
+	Fraction operator/(const Fraction& fraction) const;
+	bool operator==(const Fraction& fraction) const;
+	bool operator!=(const Fraction& fraction) const;
+
 	friend std::ostream& operator<<(std::ostream& consoleOut, const Fraction& number);
 
 private:

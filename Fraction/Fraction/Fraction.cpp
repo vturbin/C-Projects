@@ -76,6 +76,64 @@ bool Fraction::CompareFractions(Fraction& x, Fraction& y) const
 	return false;
 }
 
+Fraction Fraction::operator-(const Fraction& fraction) const
+{
+	Fraction newFraction;
+	if (denominator != fraction.denominator)
+	{
+		newFraction.denominator = denominator * fraction.denominator;
+		newFraction.numerator = numerator * (newFraction.denominator / denominator)
+			- fraction.numerator * (newFraction.denominator / fraction.denominator);
+	}
+	else {
+		newFraction.denominator = denominator;
+		newFraction.numerator = numerator - fraction.numerator;
+	}
+	newFraction.SimplifyFraction();
+	return newFraction;
+}
+
+Fraction Fraction::operator+(const Fraction& fraction) const
+{
+	Fraction newFraction;
+	if (denominator != fraction.denominator)
+	{
+		newFraction.denominator = denominator * fraction.denominator;
+		newFraction.numerator = numerator * (newFraction.denominator / denominator)
+			+ fraction.numerator * (newFraction.denominator / fraction.denominator);
+	}
+	else {
+		newFraction.denominator = denominator;
+		newFraction.numerator = numerator + fraction.numerator;
+	}
+	newFraction.SimplifyFraction();
+	return newFraction;
+}
+
+Fraction Fraction::operator*(const Fraction& fraction) const
+{
+	Fraction newFraction(numerator * fraction.numerator, denominator * fraction.denominator);
+	newFraction.SimplifyFraction();
+	return newFraction;
+}
+
+Fraction Fraction::operator/(const Fraction& fraction) const
+{
+	Fraction newFraction(numerator * fraction.denominator, denominator * fraction.numerator);
+	newFraction.SimplifyFraction();
+	return newFraction;
+}
+
+bool Fraction::operator==(const Fraction& fraction) const
+{
+	return(this->numerator == fraction.numerator && this->denominator == fraction.denominator);
+}
+
+bool Fraction::operator!=(const Fraction& fraction) const
+{
+	return !(*this == fraction);
+}
+
 double Fraction::fourth = 0.25;
 double Fraction::half = 0.5;
 double Fraction::third = 0.33;
@@ -105,7 +163,15 @@ int main()
 	cout << "here comes the fraction sum: " << sum << endl;
 
 	cout << "here comes the fraction subtraction: " << subtract << endl;
-
+	// fractions using operator overloading
+	Fraction newFractionSum = number2 + number3;
+	cout << "This is sum from operator overloading: " << newFractionSum << endl;
+	Fraction newFractionSubtract = number2 - number3;
+	cout << "This is subtraction from operator overloading: " << newFractionSubtract << endl;
+	Fraction newFractionMultiple = number2 * number3;
+	cout << "This is multiplication from operator overloading: " << newFractionMultiple << endl;
+	Fraction newFractionDivide = number2 / number3;
+	cout << "This is division from operator overloading: " << newFractionDivide << endl;
 
 	//static data member
 	cout << sum.fifth << endl;
